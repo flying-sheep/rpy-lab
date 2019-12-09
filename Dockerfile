@@ -28,3 +28,18 @@ RUN R --slave -e 'install.packages(c("ggplot.multistats", "knn.covertree"), repo
 
 # Install newest destiny
 RUN R --slave -e 'devtools::install_github("theislab/destiny", dep = FALSE)'
+
+# Install Python stuff
+RUN conda install --quiet --yes \
+	'scanpy=1.4*' \
+	'rpy2=3.1*' \
+	'anndata2ri=1.0*' \
+	'ipywidgets=7.5*' \
+	&& \
+	conda clean --all -f -y && \
+	fix-permissions $CONDA_DIR
+
+# Vital Jupyter extensions
+RUN jupyter labextension install \
+	'@jupyter-widgets/jupyterlab-manager' \
+	'jupyterlab-plotly' 'plotlywidget'

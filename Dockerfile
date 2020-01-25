@@ -42,4 +42,5 @@ RUN conda install --quiet --yes \
 # Vital Jupyter extensions
 RUN jupyter labextension install \
 	'@jupyter-widgets/jupyterlab-manager' \
+	'@techrah/text-shortcuts' \
 	'jupyterlab-plotly' 'plotlywidget'
